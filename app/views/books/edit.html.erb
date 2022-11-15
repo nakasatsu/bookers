@@ -1,6 +1,16 @@
 <h2>Editing Book</h2>
 
-<%= form_with model: @book, url: "/books/#{book.id}", method: :patch do |f| %>
+<% if @book.errors.any? %>
+    <%= @book.errors.count %> errors occurred.
+        <ul>
+            <% @book.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+<% end %>
+
+
+<%= form_with model: @book, url: "/books/#{@book.id}", method: :patch do |f| %>
 
 <p>Title</p>
 <%= f.text_field :title %>
